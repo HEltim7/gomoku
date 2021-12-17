@@ -114,7 +114,7 @@ namespace server{
             else recv(conn1,buff,BUFFSIZE-1,0);
             toData(buff,data);
             if(data.stop==1){
-                cout<<"[info] stop signal reveived from client["<<i<<"] => ";
+                cout<<"[info] stop signal reveived from client["<<i<<"] "<<endl;
                 quit(0);
             }
             cout<<"[info] receive data successfully from client["<<i<<"] => ";

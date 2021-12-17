@@ -42,8 +42,11 @@ namespace net{
     }
 
     inline void stop(int p){
+        DATA data={0,0,0,1};
+        toChar(buff,data);
+        send(sockfd,buff,BUFFSIZE - 1,0);
         close(sockfd);
-        std::cout<<"[info] close client";
+        cout<<"[info] close client"<<endl;
         exit(0);
     }
 
@@ -54,7 +57,7 @@ namespace net{
         sockfd = socket(AF_INET, SOCK_STREAM, 0);
         if (-1 == sockfd)
         {
-            std::cout<<"[error] Create socket error("<<errno<<"):"<<strerror(errno)<<std::endl;
+            cout<<"[error] Create socket error("<<errno<<"):"<<strerror(errno)<<endl;
             return -1;
         }
         bzero(&servaddr, sizeof(servaddr));
@@ -63,7 +66,7 @@ namespace net{
         servaddr.sin_port = htons(SERVER_PORT);
         if (-1 == connect(sockfd, (struct sockaddr *)&servaddr, sizeof(servaddr)))
         {
-            std::cout<<"[error] Connet error("<<errno<<"):"<<strerror(errno)<<std::endl;
+            cout<<"[error] Connet error("<<errno<<"):"<<strerror(errno)<<endl;
             return -1;
         }
         return 0;
@@ -85,7 +88,7 @@ namespace net{
         recv(sockfd, buff, BUFFSIZE - 1, 0);
         toData(buff,data);
         if(data.stop==1){
-            std::cout<<"[info] stop signal reveived from server"<<std::endl;
+            cout<<"[info] stop signal reveived from server"<<endl;
             stop(0);
         }
         return data;
