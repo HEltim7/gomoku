@@ -1,6 +1,6 @@
-#include<iostream>
-#include<cstring>
-#include<termio.h>
+#include <iostream>
+#include <cstring>
+#include <termio.h>
 #include <sys/socket.h>
 #include <sys/unistd.h>
 #include <sys/errno.h>
